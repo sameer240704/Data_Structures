@@ -2,6 +2,7 @@
     "files.associations": {
         "STACK.C": "cpp",
         "L_LIST.C": "cpp",
-        "LLSAM.C": "cpp"
+        "LLSAM.C": "cpp",
+        "QUEUE.C": "cpp"
     }
 }
