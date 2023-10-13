@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "STACK.C": "cpp"
+        "STACK.C": "cpp",
+        "L_LIST.C": "cpp",
+        "LLSAM.C": "cpp"
     }
 }
