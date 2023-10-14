@@ -49,8 +49,8 @@ void Dequeue() {
     if(front == -1 && rear == -1) 
         printf("\nQueue is Empty!");
     else if(front == rear) {
+        printf("\nElement Dequeued : %d", queue[front]);
         front = rear = -1;
-        printf("\nQueue is Empty!");
     }
     else {
         printf("\nElement Dequeued : %d", queue[front]);
