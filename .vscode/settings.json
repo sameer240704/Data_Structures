@@ -3,6 +3,7 @@
         "STACK.C": "cpp",
         "L_LIST.C": "cpp",
         "LLSAM.C": "cpp",
-        "QUEUE.C": "cpp"
+        "QUEUE.C": "cpp",
+        "conio.h": "c"
     }
 }
