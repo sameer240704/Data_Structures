@@ -167,20 +167,20 @@ void DeleteAtPosition(int pos) {
 }
 
 int Search(int info) {
-    int pos = 1;
+    int pos = 0;
     if(list == NULL)
         printf("\nList is Empty!");
     else {
         temp = list;
-        while(temp -> next != last) {
-            if(temp -> data == info)
-                break;
-            else 
-                temp = temp -> next;
-                pos++;
+        while(temp != NULL) {
+            if(temp -> data == info) {
+                return pos;
+            }
+            temp = temp -> next;
+            pos++;
         }
     }
-    return pos++;
+    return -1;
 }
 
 void SearchAndDelete(int info) {
