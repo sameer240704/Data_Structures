@@ -41,6 +41,8 @@ int main() {
 void Enqueue(int info) {
     if(rear == (MAX-1))
         printf("\nQueue is Full!");
+    if(front == MAX)
+        printf("Queue is Complete!");
     else {
         if(rear == -1)
             front++;
@@ -54,7 +56,7 @@ void Dequeue() {
     else {
         if(front == rear) {
             printf("\nElement Dequeued : %d", queue[front]);
-            front = rear = -1;
+            front = rear = MAX;
         }
         else {
             printf("\nElement Dequeued : %d", queue[front]);
