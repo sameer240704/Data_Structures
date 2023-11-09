@@ -5,6 +5,8 @@
         "LLSAM.C": "cpp",
         "QUEUE.C": "cpp",
         "conio.h": "c",
-        "S_LL.C": "cpp"
+        "S_LL.C": "cpp",
+        "D_LL[1].C": "cpp",
+        "L_LIST[1].C": "cpp"
     }
 }

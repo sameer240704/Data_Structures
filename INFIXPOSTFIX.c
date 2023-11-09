@@ -8,6 +8,7 @@ int top = -1;
 
 int main() {
     char exp[100], *e, ch;
+    clrscr();
     printf("\nEnter the expression : ");
     scanf("%s", exp);
     e = exp;
@@ -18,7 +19,7 @@ int main() {
             push(*e);
         else if(*e == ')') {
             while((ch = pop()) != '(')
-                printf("%d ", ch);
+                printf("%c ", ch);
         }
         else if(*e == ' ')
             e++;
@@ -31,6 +32,7 @@ int main() {
     }
     while(top != -1)
         printf("%c ", pop());
+    getch();
     return 0;
 }
 

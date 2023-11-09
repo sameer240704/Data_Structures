@@ -9,6 +9,7 @@ int front = -1, rear = -1, queue[MAX];
 
 int main() {
     int choice, data;
+    clrscr();
     do {
         printf("\nEnter choice\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\t");
         scanf("%d", &choice);
@@ -29,6 +30,7 @@ int main() {
         }
     }
     while(choice != 4);
+    getch();
     return 0;
 }
 
