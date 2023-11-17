@@ -14,7 +14,7 @@ int main() {
     scanf("%d", &key);
     first = 0;
     last = length - 1;
-    while(first < last) {
+    while(first <= last) {
         mid = (first+last)/2;
         if(arr[mid] < key) 
             first = mid+1;
