@@ -17,7 +17,7 @@ int main() {
     last = length - 1;
     mid = (first + last)/2;
     int pos = binary_search(arr, first, last, mid, key);
-    if(pos > 0)
+    if(pos >= 0)
         printf("\nElement %d found at position : %d", key, (pos+1));
     else    
         printf("\nElement not found");
@@ -33,5 +33,5 @@ int binary_search(int arr[], int first, int last, int mid, int key) {
         else 
             return mid;
     }
-    return 0;
+    return -1;
 }
