@@ -17,13 +17,9 @@ struct Node* insert(struct Node *r,int data)
 		r->right=NULL;
 	}
 	else if(data<r->value)
-	{
 		r->left=insert(r->left,data);
-	}
 	else
-	{
 		r->right=insert(r->right,data);
-	}
 	return r;
 }
 void inOrder(struct Node *r)
@@ -58,23 +54,15 @@ void postOrder(struct Node *r)
 void search(struct Node *r,int data)
 {
 	if(r==NULL)
-	{
 		printf("\nElement does not exist.");
-	}
 	else if(data==r->value)
-	{
 		printf("\nElement is present in the tree.");
-	}
 	else if(data < r->value)
-	{
 		 search(r->left,data);
-	}
 	else
-	{
 		 search(r->right,data);
-
-	}
 }
+
 struct Node *findMin(struct Node *r)
 {
 	if(r==NULL)
@@ -91,7 +79,7 @@ struct Node *delete(struct Node *r,int data)
 	struct Node *temp;
 	if(r==NULL)
 	{
-		printf("\nTree is empty.");
+		printf("\nTree is empty");
 		return 0;
 	}
 	else if(data < r->value)
@@ -132,19 +120,17 @@ int height(struct Node* r)
 	hgt_left = height(r->left);
 	hgt_right = height(r->right);
 	if(hgt_left>hgt_right)
-	{
 		return (1+hgt_left);
-	}
 	return (1+hgt_right);
 }
 
-void mirrorimg(struct Node* r)
+void mirrorImg(struct Node* r)
 {
 	struct Node* temp;
 	if(r!=NULL)
 	{
-		mirrorimg(r->left);
-		mirrorimg(r->right);
+		mirrorImg(r->left);
+		mirrorImg(r->right);
 		temp = r->left;
 		r->left =r->right;
 		r->right = temp;
@@ -158,7 +144,7 @@ void main()
 	int i,n,data,ch;
 	root=NULL;
 	//clrscr();
-	do{
+	do {
 		printf("\nEnter a choice\n");
 		printf("\nBinary Tree Traversal\n");
 		printf("1] Enter a node\n2] Preorder Traversal\n3] Inorder Traversal\n4] Postorder Traversal\n5] Search\n6] Delete Node\n7] Count\n8] Height\n9]Mirror image\n10] Exit\n");
@@ -194,7 +180,7 @@ void main()
 			case 8: printf("Height of the tree is: %d",height(root));
 				break;
 			case 9: printf("\n Mirror image of Binary tree is:");
-				mirrorimg(root);
+				mirrorImg(root);
 				inOrder(root);
 				break;
 			case 10: exit(0);
