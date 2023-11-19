@@ -1,68 +1,69 @@
-#include<stdio.h>
+#include<stdio.h>  
 #include<conio.h>
-#include<string.h>
 
-int array[100], units[100], tens[100], hundreds[100], thousands[100];
-void digitSeparator(int );
-void digitSorter(int );
-void digitCreator();
-
-int main() {
-    int i, length;
-    printf("Enter the length of the array : ");
+int findMax(int [], int);
+void countingSort(int [], int, int);
+void radixSort(int [], int); 
+  
+int main() {  
+    int length, i;
+    printf("\nEnter the length of the array : ");
     scanf("%d", &length);
-    printf("\nEnter the array to be sorted : ");
-    for(i=0 ; i<length ; i++) {
-        scanf("%d", &array[i]);
-    }
-    digitSeparator(length);
-    digitSorter(length);
-    /*printf("\n\n");
-    for(i=0 ; i<length ; i++) {
-        printf("%d ", units[i]);
-    }
-    printf("\n\n");
-    for(i=0 ; i<length ; i++) {
-        printf("%d ", tens[i]);
-    }
-    printf("\n\n");
-    for(i=0 ; i<length ; i++) {
-        printf("%d ", hundreds[i]);
-    }
-    printf("\n\n");
-    for(i=0 ; i<length ; i++) {
-        printf("%d ", thousands[i]);
-    }*/
-    return 0;
+    int arr[length];
+    printf("\nEnter the UNSORTED array : ");
+    for (i = 0; i < length; ++i) {  
+        scanf("%d", &arr[i]);  
+    } 
+    printf("\n***UNSORTED ARRAY*** -> ");
+    for(i = 0; i < length; ++i) {  
+        printf("%d  ", arr[i]);  
+    } 
+    radixSort(arr, length);  
+    printf("\n***SORTED ARRAY*** -> ");
+    for(i = 0; i < length; i++) {  
+        printf("%d  ", arr[i]);  
+    }  
+    getch();
 }
 
-void digitSeparator(int length) {
-    int i, counter = 0, rem;
-    for(i=0 ; i<length ; i++) {
-        int num = array[i];
-        int j = 0;
-        while(num > 0) {
-            rem = num % 10;
-            if(j == 0) 
-                units[i] = rem;
-            else if(j == 1)
-                tens[i] = rem;
-            else if(j == 2)
-                hundreds[i] = rem;
-            else if(j == 3)
-                thousands[i] = rem;
-            j++;
-            num = num / 10;
-        }
-        if(tens[i] == -1)
-            tens[i] = 0;
-        if(hundreds[i] == -1)
-            hundreds[i] = 0;
-        if(thousands[i] == -1)
-            thousands[i] = 0;
-    }
-}
-
-void digitSorter(int length) {
+//This is a Simple Linear Search function which gives us the maximum number in the entire array and returns it
+int findMax(int arr[], int length) {  
+    int i;
+    int maxElement = arr[0];  
+    for(i = 1; i < length; i++) {  
+        if(arr[i] > maxElement)  
+        maxElement = arr[i];  
+    }  
+    return maxElement; 
+}  
+  
+void countingSort(int arr[], int length, int pos) 
+{  
+    int i;
+    int result[length + 1];  
+    int count[100] = {0};    
     
-}
+    for (i = 0; i < length; i++) {
+        count[(arr[i] / pos) % 10]++;  
+    }
+        
+    for (i = 1; i < 100; i++) {
+        count[i] += count[i - 1]; 
+    } 
+    
+    for (i = length-1; i >= 0; i--) {  
+        result[count[(arr[i] / pos) % 10] - 1] = arr[i];  
+        count[(arr[i] / pos) % 10]--;  
+    }  
+
+    for (i = 0; i < length; i++)  
+        arr[i] = result[i];  
+}  
+  
+void radixSort(int arr[], int length) {  
+    int pos;
+    int maxElement = findMax(arr, length);  
+    for (pos = 1; maxElement / pos > 0; pos *= 10) {
+        countingSort(arr, length, pos);  
+    }
+} 

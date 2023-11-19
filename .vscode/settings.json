@@ -7,6 +7,9 @@
         "conio.h": "c",
         "S_LL.C": "cpp",
         "D_LL[1].C": "cpp",
-        "L_LIST[1].C": "cpp"
-    }
+        "L_LIST[1].C": "cpp",
+        "LLNEW1[1].C": "cpp",
+        "LLNEW1.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
