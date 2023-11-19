@@ -1,48 +1,40 @@
-#include<stdio.h>
 #include<conio.h>
-#define MAX 100
+#include<stdio.h>
 
-void Sort(int arr[], int n);
-void main()
+void insertionSort(int [], int);
+
+int main()
 {
-	int n,i,a[MAX];
-
-	printf("Enter Number of Element to be Sort : ");
-	scanf("%d",&n);
-	printf("\n Enter %d Elements in Array to Sort : ",n);
-	for(i=0;i<n;i++)
-	{
-		scanf("%d",&a[i]);
+	int length, i;
+	printf("\nEnter the length of the array : ");
+	scanf("%d", &length);
+	int array[length];
+	printf("\nEnter the UNSORTED array : ");
+	for(i=0 ; i<length ; i++) {
+		scanf("%d", &array[i]);
 	}
-	printf("\n Elements Before Sorting : ");
-	for(i=0;i<n;i++)
-	{
-		printf("%d ", a[i]);
+	printf("\n***UNSORTED ARRAY*** -> ");
+	for(i=0 ; i<length ; i++) {
+		printf("%d ", array[i]);
 	}
-	Sort(a,n);
-	printf("\nElements after Sorting : ");
-	for(i=0;i<n;i++)
-	{
-		printf("%d ", a[i]);
+	insertionSort(array, length);
+	printf("\n***SORTED ARRAY*** -> ");
+	for(i=0 ; i<length ; i++) {
+		printf("%d ", array[i]);
 	}
-	getch();
+	return 0;
 }
 
-
-
-void Sort(int arr[], int n)
+void insertionSort(int array[], int length)
 {
-    int i, key, j;
-    for (i = 1; i < n; i++)
-    {
-	key = arr[i];
-	j = i - 1;
-	while (j >= 0 && arr[j] > key)
-	{
-	    arr[j + 1] = arr[j];
-	    j = j - 1;
+	int i, j, key;
+	for(i = 1; i < length; i++) {
+		key = array[i];
+		j = i - 1;
+		while(j >= 0 && array[j] > key) {
+			array[j + 1] = array[j];
+			j--;
+		}
+		array[j + 1] = key;
 	}
-	arr[j + 1] = key;
-    }
 }
-
