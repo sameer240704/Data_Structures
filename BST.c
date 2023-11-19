@@ -1,184 +1,206 @@
-#include <conio.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-struct node {
-     int value;
-     struct node* left;
-     struct node* right;
-} *root = NULL;
-
-struct node* insert(struct node* r, int data);
-void preOrder(struct node* r);
-void inOrder(struct node* r);
-void postOrder(struct node* r);
-struct node* BinarySearch(struct node* r, int data);
-struct node* delete(struct node* r, int data);
-struct node* find_min(struct node *r);
-int count(struct node* r);
-int height(struct node* r);
-
-int main()
+#include<stdio.h>
+#include<conio.h>
+struct Node
 {
-    int i, n, v, choice;
-    root = NULL;
-    //clrscr();
-    printf("\n***BINARY SEARCH TREE***");
-    do {
-        printf("\n1. Enter Node\n2. PreOrder Traversal\n3. InOrder Traversal\n4. PostOrder Traversal\n5.Search\n6. Delete a Node\n7. Number of nodes in the tree\n8. Height of the tree\n9. Exit");
-        printf("\n\nEnter Your Choice:");
-        scanf("%d",&choice);
-        switch(choice) {
-                case 1: printf("\nEnter Data:");
-                    scanf("%d", &v);
-                    root = insert(root, v);
-                    break;
-
-                case 2: printf("\nPreorder Traversal:");
-                    preOrder(root);
-                    printf("\n");
-                    break;
-
-                case 3: printf("\nInorder Traversal:");
-                    inOrder(root);
-                    printf("\nMinimum:%d",find_min(root)->value);
-                    break;
-                
-                case 4: printf("\nPostorder Traversal:");
-                    postOrder(root);
-                    printf("\n");
-                    break;
-
-                case 5: printf("\nEnter the data to be searched:");
-                        scanf("%d", &v);
-                        root = BinarySearch(root, v);
-                        break;
-
-                case 6: printf("Enter the data to be deleted:");
-                        scanf("%d", &v);
-                        root = delete(root, v);
-                        break;
-
-                case 7: printf("\nTotal number of nodes in the tree:%d",count(root));
-                        break;
-
-                case 8: printf("\nHeight of the tree:%d",height(root));
-                        break;
-
-                case 9: exit(0);
-
-                default: printf("\nEnter a valid choice");
-        }
-    } while(choice !=9);
-    getch();
-    return 0;
+	int value;
+	struct Node *left;
+	struct Node *right;
+};
+struct Node *root;
+struct Node* insert(struct Node *r,int data)
+{
+	if (r==NULL)
+	{
+		r=(struct Node*)malloc(sizeof(struct Node));
+		r->value=data;
+		r->left=NULL;
+		r->right=NULL;
+	}
+	else if(data<r->value)
+	{
+		r->left=insert(r->left,data);
+	}
+	else
+	{
+		r->right=insert(r->right,data);
+	}
+	return r;
+}
+void inOrder(struct Node *r)
+{
+	if(r!=NULL)
+	{
+		inOrder(r->left);
+		printf("%d  ",r->value);
+		inOrder(r->right);
+	}
 }
 
-struct node* insert(struct node* r, int data) {
-    if(r==NULL) {
-        r = (struct node*) malloc(sizeof(struct node));
-        r->value = data;
-        r->left = NULL;
-        r->right = NULL;
-    }
-    else if(data < r->value)
-        r->left = insert(r->left, data);
-    else 
-        r->right = insert(r->right, data);
-    return r;
+void preOrder(struct Node *r)
+{
+	if(r!=NULL)
+	{
+		printf("%d  ",r->value);
+		preOrder(r->left);
+		preOrder(r->right);
+	}
 }
 
-void inOrder(struct node* r) {
-    if(r!=NULL) {
-        inOrder(r->left);
-        printf("%d ", r->value);
-        inOrder(r->right);
-    }
+void postOrder(struct Node *r)
+{
+	if(r!=NULL)
+	{
+		postOrder(r->left);
+		postOrder(r->right);
+		printf("%d  ",r->value);
+	}
+}
+void search(struct Node *r,int data)
+{
+	if(r==NULL)
+	{
+		printf("\nElement does not exist.");
+	}
+	else if(data==r->value)
+	{
+		printf("\nElement is present in the tree.");
+	}
+	else if(data < r->value)
+	{
+		 search(r->left,data);
+	}
+	else
+	{
+		 search(r->right,data);
+
+	}
+}
+struct Node *findMin(struct Node *r)
+{
+	if(r==NULL)
+		return 0;
+	else if(r->left==NULL)
+		return r;
+	else
+		return(findMin(r->left));
 }
 
-void preOrder(struct node* r) {
-    if(r!=NULL) {
-        printf("%d ", r->value);
-        preOrder(r->left);
-        preOrder(r->right);
-    }
+
+struct Node *delete(struct Node *r,int data)
+{
+	struct Node *temp;
+	if(r==NULL)
+	{
+		printf("\nTree is empty.");
+		return 0;
+	}
+	else if(data < r->value)
+		r->left=delete(r->left,data);
+	else if(data > r->value)
+		r->right=delete(r->right,data);
+	else if(r->left!=NULL && r->right!=NULL)
+	{
+		temp=findMin(r->right);
+		r->value=temp->value;
+		r->right=delete(r->right,r->value);
+	}
+	else
+	{
+		temp=r;
+		if(r->left==NULL)
+			r=r->right;
+		else if (r->right==NULL)
+		       r=r->left;
+		free(temp);
+	}
+	return(r);
 }
 
-void postOrder(struct node* r) {
-    if(r!=NULL) {
-        postOrder(r->left);
-        postOrder(r->right);
-        printf("%d ", r->value);
-    }
+int count(struct Node *r)
+{
+	if(r==NULL)
+		return 0;
+	return (1 + count(r->left) + count(r->right));
 }
 
-struct node* BinarySearch(struct node* r, int data) {
-    if(r == NULL) {
-        printf("Number doesn't exist");
-    }
-    else if(data == r->value) {
-        printf("Item found");
-        return r;
-    }
-    else if(data<r->value)
-        return BinarySearch(r->left, data);
-    else
-        return BinarySearch(r->right, data);
-    return 0;
+
+int height(struct Node* r)
+{
+	int hgt_left,hgt_right;
+	if(r==NULL)
+		return 0;
+	hgt_left = height(r->left);
+	hgt_right = height(r->right);
+	if(hgt_left>hgt_right)
+	{
+		return (1+hgt_left);
+	}
+	return (1+hgt_right);
 }
 
-struct node *find_min(struct node *r) {
-    if(r == NULL)
-        return 0;
-    else if(r->left == NULL)
-        return r;
-    else
-        return(find_min(r->left));
+void mirrorimg(struct Node* r)
+{
+	struct Node* temp;
+	if(r!=NULL)
+	{
+		mirrorimg(r->left);
+		mirrorimg(r->right);
+		temp = r->left;
+		r->left =r->right;
+		r->right = temp;
+	}
+
+
 }
 
-struct node* delete(struct node* r, int data) {
-    struct node *temp;
-    if (r == NULL) {
-        printf("\nTree is Empty");
-        return r;
-    }
-    if (data < r->value)
-        r->left = delete(r->left, data);
-    else if (data > r->value)
-        r->right = delete(r->right, data);
-    else {
-        if (r->left == NULL) {
-            temp = r->right;
-            free(r);
-            return temp;
-        }
-        else if (r->right == NULL) {
-            temp = r->left;
-            free(r);
-            return temp;
-        }
-        temp = find_min(r->right);
-        r->value = temp->value;
-        r->right = delete(r->right, temp->value);
-    }
-
-    return r;
-}
-
-int count(struct node* r) {
-    if(r==NULL)
-    return 0;
-    return(1+count(r->left)+count(r->right));
-}
-
-int height(struct node* r) {
-    int h_left;
-    int h_right;
-    if(r==NULL)
-        return 0;
-    h_left=height(r->left);
-    h_right=height(r->right);
-    if(h_left>h_right)
-        return 1+h_left;
-    return 1+h_right;
+void main()
+{
+	int i,n,data,ch;
+	root=NULL;
+	//clrscr();
+	do{
+		printf("\nEnter a choice\n");
+		printf("\nBinary Tree Traversal\n");
+		printf("1] Enter a node\n2] Preorder Traversal\n3] Inorder Traversal\n4] Postorder Traversal\n5] Search\n6] Delete Node\n7] Count\n8] Height\n9]Mirror image\n10] Exit\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1: printf("Enter data: ");
+				scanf("%d",&data);
+				root=insert(root,data);
+				break;
+			case 2: printf("\nPreorder Traversal\n");
+				preOrder(root);
+				printf("\n");
+				break;
+			case 3: printf("\nInorder Traversal\n");
+				inOrder(root);
+				printf("\n");
+				break;
+			case 4: printf("\nPostorder Traversal\n");
+				postOrder(root);
+				printf("\n");
+				break;
+			case 5: printf("Enter the element you want to search: ");
+				scanf("%d",&data);
+				search(root,data);
+				break;
+			case 6: printf("Enter the element you want to delete: ");
+				scanf("%d",&data);
+				delete(root,data);
+				break;
+			case 7: printf("Count of the nodes is: %d",count(root));
+				break;
+			case 8: printf("Height of the tree is: %d",height(root));
+				break;
+			case 9: printf("\n Mirror image of Binary tree is:");
+				mirrorimg(root);
+				inOrder(root);
+				break;
+			case 10: exit(0);
+				break;
+			default: printf("\nWrong choice entered.");
+		}
+	}while(ch!=10);
+	getch();
 }
