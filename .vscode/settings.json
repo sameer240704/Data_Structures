@@ -11,5 +11,8 @@
         "LLNEW1[1].C": "cpp",
         "LLNEW1.C": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "cSpell.words": [
+        "Inorder"
+    ]
 }

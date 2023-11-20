@@ -5,8 +5,8 @@ struct Node
 	int value;
 	struct Node *left;
 	struct Node *right;
-};
-struct Node *root;
+} *root = NULL;
+
 struct Node* insert(struct Node *r,int data)
 {
 	if (r==NULL)
@@ -135,8 +135,6 @@ void mirrorImg(struct Node* r)
 		r->left =r->right;
 		r->right = temp;
 	}
-
-
 }
 
 void main()
@@ -187,6 +185,6 @@ void main()
 				break;
 			default: printf("\nWrong choice entered.");
 		}
-	}while(ch!=10);
+	} while(ch!=10);
 	getch();
 }
