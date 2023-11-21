@@ -9,7 +9,8 @@
         "D_LL[1].C": "cpp",
         "L_LIST[1].C": "cpp",
         "LLNEW1[1].C": "cpp",
-        "LLNEW1.C": "cpp"
+        "LLNEW1.C": "cpp",
+        "LRU[1].C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cSpell.words": [
