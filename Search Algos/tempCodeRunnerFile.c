@@ -1,44 +1,37 @@
 #include<stdio.h>
 #include<conio.h>
-
-int minimum(int a, int b) {
-    return (a > b) ? b : a;
-}
+int binary_search(int [], int , int , int , int );
 
 int main() {
-    int length, i, key, offset = -1;
-    printf("\nEnter the length of array : ");
+    int i, length, first, last, mid, key;
+    printf("Enter the length of the array : ");
     scanf("%d", &length);
-    int array[length], fib[length + 1];
-    printf("\nEnter the SORTED array : ");
-    for(i = 0 ; i < length ; i++) {
-        scanf("%d", &array[i]);
-    }
-    fib[0] = 0;
-    fib[1] = 1;
-    for(i = 2 ; i <= length ; i++) {
-        fib[i] = fib[i - 1] + fib[i - 2];
+    int arr[length];
+    printf("\nEnter the sorted array : ");
+    for(i=0 ; i<length ; i++) {
+        scanf("%d", &arr[i]);
     }
     printf("\nEnter the element to be searched : ");
     scanf("%d", &key);
-    int k = length - 1;
-    while(fib[k] > 0) {
-        int index = minimum(offset + fib[k-2], length - 1);
-        if(key == array[index]) {
-            printf("\nElement found at index %d", (index+1));
-            break;
-        }
-        else if(key < array[index]) {
-            k = k - 1;
-            offset = index;
-        }
-        else if(key > array[index])
-            k = k - 2;
-        if(fib[k] == 0) {
-            printf("\nElement not found");
-            break;
-        }
+    first = 0;
+    last = length - 1;
+    mid = (first + last)/2;
+    int pos = binary_search(arr, first, last, mid, key);
+    if(pos >= 0)
+        printf("\nElement %d found at position : %d", key, (pos+1));
+    else    
+        printf("\nElement not found");
+}
+
+int binary_search(int arr[], int first, int last, int mid, int key) {
+    if(first <= last) {
+        mid = (first+last)/2;
+        if(arr[mid] < key)
+            return binary_search(arr, (mid+1), last, mid, key);
+        else if(arr[mid] > key)
+            return binary_search(arr, first, (mid-1), mid, key);
+        else 
+            return mid;
     }
-    getch();
-    return 0;
+    return -1;
 }

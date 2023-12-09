@@ -30,10 +30,7 @@ int minimum(int a, int b) {
 }
 
 int fibonacci_Search(int arr[], int length, int key, int Fm, int Fm1, int Fm2, int offset) {
-    printf("\n%d %d %d", Fm, Fm1, Fm2);
     int i = minimum(offset + Fm2, length - 1);
-    printf("\n%d", i);
-
     if(Fm < 1) 
         return -1;
     else {
@@ -62,7 +59,6 @@ int fibonacci_Arrange(int arr[], int length, int key) {
         Fm2 = Fm1;
         Fm1 = Fm;
         Fm = Fm1 + Fm2;
-        printf("\n%d %d %d", Fm, Fm1, Fm2);
     }
     int pos = fibonacci_Search(arr, length, key, Fm, Fm1, Fm2, offset);
     return pos;

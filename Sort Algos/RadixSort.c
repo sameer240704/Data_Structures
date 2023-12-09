@@ -26,7 +26,6 @@ int main() {
     getch();
 }
 
-//This is a Simple Linear Search function which gives us the maximum number in the entire array and returns it
 int findMax(int arr[], int length) {  
     int i;
     int maxElement = arr[0];  

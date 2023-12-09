@@ -14,17 +14,18 @@ int main() {
     for(i=0 ; i<length ; i++) {
         printf("%d ", arr[i]);
     }
-    for(i=0 ; (i<length-1) ; i++) {
-        for(j=i ; j<(length - 1) ; j++) {
-            if(arr[i] > arr[j+1])
-                smallest = j+1;
-        }
-        if(smallest != i) {
-            temp = arr[smallest];
-            arr[smallest] = arr[i];
-            arr[i] = temp;
-        }
-    }
+    for(i = 0; i<length-1; i++) {
+		smallest = i;
+		for(j=(i+1) ; j<length ; j++) {
+			if(arr[smallest] > arr[j])
+			    smallest = j;
+		}
+		if(smallest != i) {
+			temp = arr[i];
+			arr[i] = arr[smallest];
+			arr[smallest] = temp;
+		}
+	}
     printf("\n***SORTED ARRAY***\n");
     for(i=0 ; i<length ; i++) {
         printf("%d ", arr[i]);
