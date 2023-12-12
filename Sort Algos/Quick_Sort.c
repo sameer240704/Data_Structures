@@ -32,9 +32,10 @@ void quickSort(int array[], int lb, int ub) {
 
 int main() {
     int length, i, lb = 0, ub;
+    int array[100];
+    //clrscr();
     printf("\nEnter the length of the array : ");
     scanf("%d", &length);
-    int array[length];
     printf("\nEnter the array : ");
     for(i = 0 ; i < length ; i++) {
         scanf("%d", &array[i]);
