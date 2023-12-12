@@ -37,19 +37,15 @@ int main() {
 void push(int info) {
     if(tos == (MAX-1))
         printf("\nStack Overflow!");
-    else {
-        tos++;
-        stack[tos] = info;
-    }
+    else 
+        stack[++tos] = info;
 }
 
 void pop() {
     if(tos == -1)
         printf("\nStack Underflow!");
-    else {
-        printf("\nElement Deleted : %d", stack[tos]);
-        tos--;
-    }
+    else 
+        printf("\nElement Deleted : %d", stack[tos--]);
 }
 
 void stackTop() {
@@ -64,7 +60,7 @@ void display() {
         printf("\nStack Underflow!");
     else {
         for(i=tos ; i>=0 ; i--) {
-            printf("\n\t\t\t\t%d", stack[i]);
+            printf("\n\t\t\t\t\t%d", stack[i]);
             printf("\n\t\t\t\t____________");
         }
     }

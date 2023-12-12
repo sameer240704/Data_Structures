@@ -8,7 +8,7 @@ int top = -1;
 
 int main() {
     char exp[100], *e, ch;
-    clrscr();
+    //clrscr();
     printf("\nEnter the expression : ");
     scanf("%s", exp);
     e = exp;

@@ -47,58 +47,52 @@ int main() {
 }
 
 void Enqueue(int info) {
-    if (rear == (MAX - 1)) {
+    if(rear == (MAX - 1))
         printf("\nQueue is Full!");
-    } else if (front == -1) {
-        front = 0;
-        rear = 0;
+    else if(front == -1) {
+        front = rear = 0;
         queue[rear] = info;
-    } else {
-        rear++;
-        queue[rear] = info;
-    }
+    } 
+    else 
+        queue[++rear] = info;
 }
 
 void Dequeue() {
-    if (front == -1) {
+    if (front == -1)
         printf("\nQueue is Empty!");
-    } else {
+    else {
         printf("\nElement Dequeued: %d", queue[front]);
-        if (front == rear) {
-            front = -1;
-            rear = -1;
-        } else {
+        if (front == rear) 
+            front = rear = -1;
+        else 
             front++;
-        }
     }
 }
 
 void QueueFront() {
-    if (front == -1) {
+    if (front == -1) 
         printf("\nQueue is Empty!");
-    } else {
+    else 
         printf("\nFront of queue: %d", queue[front]);
-    }
 }
 
 void QueueRear() {
-    if (rear == -1) {
+    if (rear == -1) 
         printf("\nQueue is Empty!");
-    } else {
+    else 
         printf("\nRear of queue: %d", queue[rear]);
-    }
 }
 
 void Display() {
-    if (front == -1) {
+    int i;
+    if(front == -1)
         printf("\nQueue is Empty!");
-    } else {
+    else {
         printf("\nFRONT: ");
-        for (int i = front; i <= rear; i++) {
+        for(i = front ; i <= rear ; i++) {
             printf("%d", queue[i]);
-            if (i < rear) {
+            if(i < rear)
                 printf(" <-- ");
-            }
         }
         printf(" :REAR\n");
     }

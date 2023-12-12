@@ -3,10 +3,12 @@
 #include<stdlib.h>
 #include<string.h>
 #define MAX 100
+
 void push(char );
 char pop();
 int is_Matching(char , char );
 int is_Balanced(char *);
+
 char stack[MAX];
 int tos = -1;
 
