@@ -17,9 +17,7 @@ int count = 0, i = 0;
 struct Node {
     int data;
     struct Node* next;
-};
-
-struct Node *newnode, *list = NULL, *last = NULL, *temp = NULL, *store = NULL;
+} *newnode, *list = NULL, *last = NULL, *temp = NULL, *store = NULL;
 
 struct Node *createNode(int info) {
     struct Node *newnode = (struct Node*)malloc(sizeof(struct Node));

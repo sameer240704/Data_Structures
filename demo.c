@@ -1,35 +1,80 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
-#define MAX 5
-void Enqueue(int );
-void Dequeue();
-void Display();
-int front = -1, rear = -1, queue[MAX];
 
-int main() {
-    int choice, data;
-    clrscr();
-    do {
-        printf("\nEnter choice\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\t");
-        scanf("%d", &choice);
-        switch(choice) {
-            case 1: printf("\nEnter data : ");
-                    scanf("%d", &data);
-                    Enqueue(data);
-                    Display();
-                    break;
-            case 2: Dequeue();
-                    Display();
-                    break;
-            case 3: Display();
-                    break;
-            case 4: exit(0);
-                    break;
-            default: printf("\nEnter a valid choice");
+struct Node {
+    int data;
+    struct Node *next;
+} *temp = NULL, *node, *tos = NULL;
+
+struct Node *createNode(int info) {
+    node = (struct Node*)malloc(sizeof(struct Node));
+    node -> data = info;
+    node -> next = NULL;
+    return node;
+}
+
+void push(int info) {
+    node = createNode(info);
+    node -> next = tos;
+    tos = node;
+}
+
+void pop() {
+    if(tos == NULL)
+        printf("\nStack is Empty");
+    else {
+        temp = tos;
+        tos = tos -> next;
+        printf("\nElement Popped : %d", temp -> data);
+        free(temp);
+    }
+}
+
+void stackTop() {
+    if(tos == NULL)
+        printf("\nStack is Empty");
+    else {
+        printf("\nStack Top : %d", tos -> data);
+    }
+}
+
+void Display() {
+    if(tos == NULL)
+        printf("\nStack is Empty");
+    else {
+        temp = tos;
+        while(temp != NULL) {
+            printf("\n\t\t\t%d", temp -> data);
+            printf("\n\t\t_____________");
+            temp = temp -> next;
         }
     }
-    while(choice != 4);
-    getch();
+}
+
+int main()
+{
+    int choice, data;
+    do{
+        printf("\nEnter choice\n1. Push\n2. Pop\n3. Top of Stack\n4. Display\n5. Exit\n");
+        scanf("%d", &choice);
+        switch(choice) {
+            case 1: printf("Enter data : ");
+                    scanf("%d", &data);
+                    push(data);
+                    Display();
+                    break;
+            case 2: pop();
+                    break;
+            case 3: stackTop();
+                    break;
+            case 4: Display();
+                    break;
+            case 5: exit(0);
+                    break;
+            default:printf("\nEnter a valid choice!");
+        }
+    }
+    while(choice != 5);
     return 0;
 }
