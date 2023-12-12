@@ -135,9 +135,9 @@ struct Node* addNode(struct Node* list, int data) {
 
 struct Node* concatenateTwoLists(struct Node* list1, struct Node* list2) {   
 	struct Node* temp;
-    if (list1 == NULL)
+    if (list1 == NULL) 
 		return list2;
-    	temp= list1;
+    temp= list1;
     while (temp->next != NULL)
 		temp = temp->next;
     temp->next = copyList(list2);
