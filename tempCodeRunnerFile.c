@@ -1,29 +1,35 @@
-struct Node *delete(struct Node *r,int data)
-{
-	struct Node *temp;
-	if(r==NULL)
-	{
-		printf("\nTree is empty");
-		return 0;
+#include<conio.h>
+#include<stdio.h>
+#define MAX 2
+
+int bfs(int adj[][MAX], int visited[], int start) {
+	int queue[MAX], front = -1, rear = -1, i;
+	queue[++rear] = start;
+	visited[start] = 1;
+	while(rear != front) {
+		start = queue[++front];
+		if(start == 4)
+			printf("5\t");
+		else 
+			printf("%c", start+65);
+		for(i=0 ; i<MAX ; i++) {
+			if(adj[start][i] == 1 && visited[i] == 0) {
+				queue[++rear] = i;
+				visited[i] = 1;
+			}
+		}
 	}
-	else if(data < r->value)
-		r->left=delete(r->left,data);
-	else if(data > r->value)
-		r->right=delete(r->right,data);
-	else if(r->left!=NULL && r->right!=NULL)
-	{
-		temp=findMin(r->right);
-		r->value=temp->value;
-		r->right=delete(r->right,r->value);
+}
+
+int main() {
+	int adj[MAX][MAX], i, j;
+	int visited[MAX] = {0};
+	printf("\nEnter the adjacency matrix : ");
+	for(i=0 ; i<MAX ; i++) {
+		for(j=0 ; j<MAX ; j++) {
+			scanf("%d", &adj[i][j]);
+		}
 	}
-	else
-	{
-		temp=r;
-		if(r->left==NULL)
-			r=r->right;
-		else if (r->right==NULL)
-		       r=r->left;
-		free(temp);
-	}
-	return(r);
+	bfs(adj, visited, 0);
+	return 0;
 }

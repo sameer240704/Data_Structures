@@ -39,7 +39,7 @@ void addAtEnd(int info) {
 
 void deleteAtBegin() {
     if(list==NULL)
-		printf("\nList is Empty.");
+		printf("\nList is Empty!");
     else {
 		temp=list;
 		list=list->next;

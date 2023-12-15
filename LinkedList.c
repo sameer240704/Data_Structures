@@ -199,7 +199,7 @@ void SearchAndDelete(int info) {
         printf("\nNo Data Found!");
 }
 
-void ReverseList(struct Node *head) {
+struct Node* ReverseList(struct Node *head) {
     struct Node *prev = NULL;
     struct Node *current = head;
     struct Node *next = NULL;
