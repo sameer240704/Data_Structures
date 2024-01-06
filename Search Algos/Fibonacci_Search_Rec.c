@@ -17,7 +17,7 @@ int main() {
     printf("\nEnter the element to be searched : ");
     scanf("%d", &key);
     int pos = fibonacci_Arrange(arr, length, key);
-    printf("\n%d", pos);
+
     if(pos >= 0) 
         printf("\nElement %d found at position : %d", key, (pos+1));
     else    

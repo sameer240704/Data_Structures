@@ -16,7 +16,7 @@ int main() {
     }
     printf("\nReversed String is : ");
     while(tos >= 0) {
-        printf("%c ", pop());
+        printf("%c", pop());
     }
     return 0;
 }
@@ -29,10 +29,10 @@ void push(char ch) {
 }
 
 char pop() {
-    if(tos == -1) {
-        printf("\n\nName Ends!");
-        return '\0';
-    }
-    else 
+    // if(tos == -1) {
+    //     printf("\n\nName Ends!");
+    //     return '\0';
+    // }
+    // else 
         return name[tos--];
 }

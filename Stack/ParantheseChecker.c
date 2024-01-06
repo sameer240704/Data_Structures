@@ -24,16 +24,16 @@ int main() {
 }
 
 void push(char ch) { //Normal Push
-    if(tos == (MAX-1))
-        printf("\nStack is Full!");
-    else    
+    // if(tos == (MAX-1))
+    //     printf("\nStack is Full!");
+    // else    
         stack[++tos] = ch;
 }
 
 char pop() { //Normal Pop
-    if(tos == -1)
-        printf("\nStack is Empty!");
-    else
+    // if(tos == -1)
+    //     printf("\nStack is Empty!");
+    // else
         return stack[tos--];
 }
 
@@ -51,19 +51,16 @@ int is_Matching(char ch1, char ch2) {
 int is_Balanced(char *ptr) { //General way of passing a string(character array) to a function
     int i;
     for(i=0 ; i<strlen(ptr) ; i++) {
-        if(ptr[i] != ' ') {
-            if(ptr[i] == '(' || ptr[i] == '{' || ptr[i] == '[') //If open brackets then push
-                push(ptr[i]);
-            else if(ptr[i] == ')' || ptr[i] == '}' || ptr[i] == ']') { //If closing brackets
-                if(tos == -1) //No opening bracket for current closing bracket so NOT BALANCED
-                    return 0;
-                else if(!is_Matching(pop(), ptr[i])) //Checks if the current bracket does not matches with the top of the stack element(by pop())
-                    return 0;
-            }   
-        }
-        else 
-            continue;
+        if(ptr[i] == '(' || ptr[i] == '{' || ptr[i] == '[') //If open brackets then push
+            push(ptr[i]);
+        else if(ptr[i] == ')' || ptr[i] == '}' || ptr[i] == ']') { //If closing brackets
+            if(tos == -1) //No opening bracket for current closing bracket so NOT BALANCED
+                return 0;
+            else if(!is_Matching(pop(), ptr[i])) //Checks if the current bracket does not matches with the top of the stack element(by pop())
+                return 0;
+        }   
     }
+
     if(tos == -1)
         return 1; //Balanced
     else 

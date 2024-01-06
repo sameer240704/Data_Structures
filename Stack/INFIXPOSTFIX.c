@@ -53,7 +53,7 @@ int priority(char ch) {
         return 0;
     else if(ch == '+' || ch == '-')
         return 1;
-    else if(ch == '*' || ch == '/')
+    else if(ch == '*' || ch == '/' || ch == '%')
         return 2;
     return 0;
 }

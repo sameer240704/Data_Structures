@@ -11,7 +11,7 @@ void DeleteAtBack();
 void DeleteAtPosition(int );
 int Search(int );
 void SearchAndDelete(int );
-void ReverseList(struct Node* );
+struct Node* ReverseList(struct Node* );
 void Display();
 int count = 0, i = 0;
 
@@ -91,7 +91,7 @@ int main() {
             default: printf("\nEnter a valid choice!");
         }
     }
-    while(choice != 10);
+    while(choice != 11);
     return 0;
 }
 
@@ -175,7 +175,7 @@ void DeleteAtPosition(int pos) {
 }
 
 int Search(int info) {
-    int pos = 0;
+    int pos = 1;
     if(list == NULL)
         printf("\nList is Empty!");
     else {

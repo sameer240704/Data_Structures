@@ -4,34 +4,20 @@
 int partition(int array[], int lb, int mid, int ub) {
     int i = lb, j = mid+1, k = lb, array1[100];
     while(i <= mid && j <= ub) {
-        if(array[i] <= array[j]) {
-            array1[k] = array[i];
-            i++;
-        }
-        else {
-            array1[k] = array[j];
-            j++;
-        }
-        k++;
+        if(array[i] <= array[j])
+            array1[k++] = array[i++];
+        else
+            array1[k++] = array[j++];
     }
-    if(i > mid) {
-        while(j <= ub) {
-            array1[k] = array[j];
-            k++;
-            j++;
-        }
-    }
-    else {
-        while(i <= mid) {
-            array1[k] = array[i];
-            i++;
-            k++;
-        }
-    }
-    for(i=lb ; i<=ub ; i++) {
-        array[i] = array1[i];
-    }
+    if(i > mid) 
+        while(j <= ub) 
+            array1[k++] = array[j++];
+    else 
+        while(i <= mid)
+            array1[k++] = array[i++];
 
+    for(i=lb ; i<=ub ; i++) 
+        array[i] = array1[i];
 }
 
 int mergeSort(int array[], int lb, int ub) {
