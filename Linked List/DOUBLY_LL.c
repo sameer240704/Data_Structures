@@ -4,8 +4,10 @@
 struct Node {
     int data;
     struct Node *prev,*next;
-} *list=NULL,*last=NULL,*temp,*p,*q,*node;
+} *list=NULL, *last=NULL, *temp=NULL , *p=NULL, *q=NULL, *node=NULL;
+
 int count=0,pos,i;
+
 struct Node* createNode(int info) {
     struct Node *node=(struct Node*)malloc(sizeof(struct Node));
     node->data=info;
@@ -37,6 +39,28 @@ void addAtEnd(int info) {
     }
 }
 
+
+void insertAtPosition(int info) {
+    node=createNode(info);
+    printf("\nEnter position:");
+    scanf("%d",&pos);
+    if(pos==1)
+	    addAtBegin(info);
+    else if(pos==(count+1))
+	    addAtEnd(info);
+    else {
+	    temp=list;
+	    for(i=1;i<pos;i++) {
+			p=temp;
+			temp=temp->next;
+	    }
+	    p->next=node;
+		temp->prev=node;
+		node->prev=p;
+	    node->next=temp;
+    }
+}
+
 void deleteAtBegin() {
     if(list==NULL)
 		printf("\nList is Empty!");
@@ -58,26 +82,6 @@ void deleteAtEnd() {
 		last->next=NULL;
 		free(temp);
 		count--;
-    }
-}
-void insertAtPosition(int info) {
-    node=createNode(info);
-    printf("\nEnter position:");
-    scanf("%d",&pos);
-    if(pos==1)
-	    addAtBegin(info);
-    else if(pos==(count+1))
-	    addAtEnd(info);
-    else {
-	    temp=list;
-	    for(i=1;i<pos;i++) {
-			p=temp;
-			temp=temp->next;
-	    }
-	    p->next=node;
-		temp->prev=node;
-		node->prev=p;
-	    node->next=temp;
     }
 }
 

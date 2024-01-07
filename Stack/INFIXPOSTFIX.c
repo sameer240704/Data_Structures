@@ -21,8 +21,6 @@ int main() {
             while((ch = pop()) != '(')
                 printf("%c ", ch);
         }
-        else if(*e == ' ')
-            e++;
         else {
             while(priority(stack[top]) >= priority(*e)) 
                 printf("%c ", pop());

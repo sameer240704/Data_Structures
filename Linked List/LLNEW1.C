@@ -47,16 +47,16 @@ int main() {
 							printf("\nCreate a second list : \n");
 							printf("Enter data for the new node : \n");
 							while(1){
-							scanf("%d", &data);
-							if (data == 0)
-								break;
-							list2 = addNode(list2, data);
+								scanf("%d", &data);
+								if (data == 0)
+									break;
+								list2 = addNode(list2, data);
+							}
+							list = concatenateTwoLists(list, list2);					
 						}
-						list = concatenateTwoLists(list, list2);					
-					}
-					else
-						printf("\nList is empty");
-					break;
+						else	
+							printf("\nList is empty");
+						break;
 
 				case 3 : if (list != NULL) {
 							struct Node* front = NULL;

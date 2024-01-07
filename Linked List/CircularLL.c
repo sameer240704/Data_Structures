@@ -88,7 +88,7 @@ void DeleteAtPosition(int pos) {
     if(pos == 1)
         DeleteAtFront();
     else if(pos == (count+1))
-        DeleteAtBack();
+        DeleteAtEnd();
     else {
         temp = list;
         for(int i=1 ; i<pos ; i++) {
