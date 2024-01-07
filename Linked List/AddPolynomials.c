@@ -43,7 +43,7 @@ void print(struct Node* poly) {
         current = current->next;
     }
     
-    printf("\n");
+    printf("\n\n");
 }
 
 struct Node* add(struct Node* poly1, struct Node* poly2) {

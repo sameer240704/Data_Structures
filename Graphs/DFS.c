@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define MAX 5
+#define MAX 2
 
 void dfs(int adj[][MAX], int visited[], int start) {
     int stack[MAX];
@@ -13,7 +13,7 @@ void dfs(int adj[][MAX], int visited[], int start) {
             if(adj[start][i] && visited[i] == 0) {
                 stack[++top] = i;
                 printf("%c-", i + 65);
-                visited[i];
+                visited[i] = 1;
                 break;
             }
         }

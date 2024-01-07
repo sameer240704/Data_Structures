@@ -9,8 +9,7 @@ struct Node
 
 struct Node* insert(struct Node *r,int data)
 {
-	if (r==NULL)
-	{
+	if (r==NULL) {
 		r=(struct Node*)malloc(sizeof(struct Node));
 		r->value=data;
 		r->left=NULL;
