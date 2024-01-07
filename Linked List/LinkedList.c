@@ -12,6 +12,7 @@ void DeleteAtPosition(int );
 int Search(int );
 void SearchAndDelete(int );
 struct Node* ReverseList(struct Node* );
+void ascending_Sort();
 void Display();
 int count = 0, i = 0;
 
@@ -31,7 +32,7 @@ struct Node *createNode(int info) {
 int main() {
     int choice, data, pos, loc;
     do {
-        printf("\nEnter choice\n1. Add At Front\n2. Add At Back\n3. Add At Position\n4. Delete At Front\n5. Delete At Back\n6. Delete At Position\n7. Search Data\n8. Search and Delete Data\n9. Reverse List\n10. Display\n11. Exit\n");
+        printf("\nEnter choice\n1. Add At Front\n2. Add At Back\n3. Add At Position\n4. Delete At Front\n5. Delete At Back\n6. Delete At Position\n7. Search Data\n8. Search and Delete Data\n9. Reverse List\n10. Display\n11. Ascending Order\n12. Exit\n");
         scanf("%d", &choice);
         switch(choice) {
             case 1: printf("\nEnter data : ");
@@ -86,12 +87,15 @@ int main() {
                     break;
             case 10: Display();
                     break;
-            case 11: exit(0);
+            case 11: ascending_Sort();
+                     Display();
+                     break;
+            case 12: exit(0);
                      break;
             default: printf("\nEnter a valid choice!");
         }
     }
-    while(choice != 11);
+    while(choice != 12);
     return 0;
 }
 
@@ -211,6 +215,25 @@ struct Node* ReverseList(struct Node *head) {
     }
     head = prev;
     return head;
+}
+
+void ascending_Sort() {
+
+    temp = list;
+    int swap;
+    while(temp != NULL){
+        store = temp;
+        while (store != NULL) {
+            if (temp -> data > store -> data) {
+                swap = temp -> data;
+                temp -> data = store -> data;
+                store -> data = swap;
+
+            }
+            store = store -> next;
+        }
+        temp = temp -> next;
+    }
 }
 
 void Display() {
